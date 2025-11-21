@@ -1,14 +1,28 @@
-# Use an official OpenJDK runtime as a base image
-FROM eclipse-temurin:17-jdk
+# ---------- Stage 1: Build the JAR ----------
+FROM eclipse-temurin:17-jdk as build
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the built JAR file into the container
-COPY target/*.jar app.jar
+# Copy Maven wrapper and project files
+COPY mvnw .
+COPY .mvn ./.mvn
+COPY pom.xml .
+COPY src ./src
 
-# Expose the port your Spring Boot app runs on
+# Make mvnw executable (Render/Linux requirement)
+RUN chmod +x mvnw
+
+# Build the application (skip tests for faster builds)
+RUN ./mvnw -q -DskipTests package
+
+# ---------- Stage 2: Run the app ----------
+FROM eclipse-temurin:17-jdk
+
+WORKDIR /app
+
+# Copy the built JAR from the build stage
+COPY --from=build /app/target/*.jar app.jar
+
 EXPOSE 8080
 
-# Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
