@@ -113,7 +113,7 @@ POST /api/products
 ## Related Projects
 
 Frontend interface:  
-https://github.com/DannonGibby/stocktrack-frontend
+https://github.com/DannonGibby/StockTrack-frontend
 
 ---
 
