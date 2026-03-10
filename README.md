@@ -76,8 +76,8 @@ Database
 Clone the repository:
 
 ```
-git clone https://github.com/DannonGibby/stocktrack-backend.git
-cd stocktrack-api
+git clone https://github.com/DannonGibby/StockTrack-backend.git
+cd stocktrack-backend
 ```
 
 Run the application:
@@ -110,6 +110,24 @@ POST /api/products
 
 ---
 
+## Live API
+**Live API Endpoint:**
+
+https://stocktrack-backend-xx57.onrender.com/api/products
+
+**Example response:**
+```
+[
+    {
+         "id" : 1,
+         "name" : "Example Product",
+         "description": "Sample inventory item",
+         "quantity" : 10,
+         "price" : 5.99
+    }
+] 
+```
+
 ## Related Projects
 
 Frontend interface:  
@@ -118,5 +136,4 @@ https://github.com/DannonGibby/StockTrack-frontend
 ---
 
 ## Author
-
-Dannon Gibby
+### Dannon Gibby
